@@ -45,8 +45,9 @@ class TouchHandlerContainer extends RelativeLayout {
                     lastTouchTime = thisTime;
                     touchCount = 1;
                 }
- 
-            }else if(ev.getAction() == MotionEvent.ACTION_UP && previous == MotionEvent.ACTION_DOWN && touchCount==1){ //this not move action or multiclick action
+            }
+            //if ve havnt fragment(no images) then we get only ACTION_DOWN, no ACTION_UP rize
+            if((ev.getAction() == MotionEvent.ACTION_UP||ev.getAction()  == MotionEvent.ACTION_DOWN)&& previous == MotionEvent.ACTION_DOWN && touchCount==1){ //this not move action or multiclick action
                 listener.onActionClick();
             }
             previous=ev.getAction();
