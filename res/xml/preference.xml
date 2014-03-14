@@ -7,7 +7,7 @@
         android:key="source"
         android:summary="@string/source_desc"
         android:title="@string/source" 
-        android:defaultValue="2">
+        android:defaultValue="1">
     </com.example.imageshow.settings.ListPreference>
 
     <com.example.imageshow.settings.EditTextPreference
