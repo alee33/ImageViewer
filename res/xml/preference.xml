@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <com.example.imageshow.settings.ListPreference
+        android:entries="@array/entries"
+        android:entryValues="@array/entry_values"
+        android:key="source"
+        android:summary="@string/source_desc"
+        android:title="@string/source" 
+        android:defaultValue="2">
+    </com.example.imageshow.settings.ListPreference>
+
+    <com.example.imageshow.settings.EditTextPreference
+        android:defaultValue="3754584"
+        android:dependency="source"
+        android:inputType="number"
+        android:key="vk_id"
+        android:title="@string/vk_id" >
+    </com.example.imageshow.settings.EditTextPreference>
+	<Preference
+        android:key="update"
+        android:summary="@string/update_summary"
+        android:title="@string/update" />
+	    
+</PreferenceScreen>

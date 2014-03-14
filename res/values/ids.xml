@@ -1,0 +1,6 @@
+<resources>
+
+    <item name="ID_PLAY" type="id"/>
+    <item name="ID_PAUSE" type="id"/>
+
+</resources>
