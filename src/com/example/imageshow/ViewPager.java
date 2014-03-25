@@ -13,7 +13,7 @@ import android.widget.Scroller;
  *
  */
 public class ViewPager extends android.support.v4.view.ViewPager {
-    private final String TAG = getClass().getSimpleName();
+    //private final String TAG = getClass().getSimpleName();
     private static final int SPEED = 1000; // scroll speed ms
 
     public ViewPager(Context context, AttributeSet attrs) {

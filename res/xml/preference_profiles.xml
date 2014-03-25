@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/profiles" >
+        <ListPreference
+            android:key="settings"
+            android:title="@string/profile_curr" 
+            android:summary="@string/profile_curr_sum" >
+        </ListPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/new_profile" >
+        <EditTextPreference
+            android:defaultValue="custom"
+            android:inputType="text"
+            android:key="name"
+            android:summary="@string/name_sum"
+            android:title="@string/name" >
+        </EditTextPreference>
+
+        <Preference
+            android:key="save"
+            android:summary="@string/save_summary"
+            android:title="@string/save" />
+        ]
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/profiles_delete" >
+        <ListPreference
+            android:key="profile_del"
+            android:title="@string/profile_choose"
+            android:summary="@string/profile_choose_sum"  >
+        </ListPreference>
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,6 +1,6 @@
 package com.example.imageshow.transformation;
 
-import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.PageTransformer;
 import android.view.View;
 
 /**
@@ -8,7 +8,7 @@ import android.view.View;
  * @author user
  *
  */
-public class RotationTransformer implements ViewPager.PageTransformer {
+public class RotationTransformer implements PageTransformer {
 
     @Override
     public void transformPage(View page, float position) {

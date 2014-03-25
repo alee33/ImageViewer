@@ -9,12 +9,18 @@ package com.example.imageshow;
 
 public final class R {
     public static final class array {
-        public static final int entries=0x7f080000;
-        public static final int entry_values=0x7f080001;
-        public static final int transform=0x7f080002;
-        public static final int transform_values=0x7f080003;
+        public static final int entries=0x7f090000;
+        public static final int entry_values=0x7f090001;
+        public static final int transform=0x7f090002;
+        public static final int transform_values=0x7f090003;
     }
     public static final class attr {
+    }
+    public static final class color {
+        public static final int bright_blue=0x7f050000;
+        /**  Use Gingerbread-orange 
+         */
+        public static final int selection_background_color=0x7f050001;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -23,66 +29,110 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int file=0x7f020000;
+        public static final int folder=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int ic_lock=0x7f020003;
+        public static final int ic_set_profile=0x7f020004;
+        public static final int ic_set_settings=0x7f020005;
+        public static final int ic_set_source=0x7f020006;
+        public static final int ic_unlock=0x7f020007;
+        public static final int navigation_up=0x7f020008;
+        public static final int no_data=0x7f020009;
+        public static final int notification_icon=0x7f02000a;
+        public static final int options=0x7f02000b;
+        public static final int vk=0x7f02000c;
     }
     public static final class id {
-        public static final int ID_PAUSE=0x7f060001;
-        public static final int ID_PLAY=0x7f060000;
-        public static final int content=0x7f060004;
-        public static final int gallery_item=0x7f060002;
-        public static final int loading=0x7f060003;
-        public static final int pager=0x7f060005;
-        public static final int settings=0x7f060006;
+        public static final int ID_LOCK=0x7f070002;
+        public static final int ID_NOIFICATION=0x7f070003;
+        public static final int ID_PAUSE=0x7f070001;
+        public static final int ID_PLAY=0x7f070000;
+        public static final int content=0x7f070004;
+        public static final int directoryList=0x7f07000a;
+        public static final int fragment=0x7f07000b;
+        public static final int gallery_item=0x7f070006;
+        public static final int item_image=0x7f070008;
+        public static final int item_text=0x7f070009;
+        public static final int loading=0x7f070007;
+        public static final int pager=0x7f070005;
+        public static final int settings=0x7f07000c;
+        public static final int source=0x7f07000d;
     }
     public static final class layout {
-        public static final int gallery_item=0x7f030000;
-        public static final int main_=0x7f030001;
+        public static final int main_=0x7f030000;
+        public static final int photo_item=0x7f030001;
+        public static final int picker_item=0x7f030002;
+        public static final int picker_layout=0x7f030003;
+        public static final int source_layout=0x7f030004;
     }
     public static final class menu {
-        public static final int main=0x7f0a0000;
+        public static final int main=0x7f0b0000;
     }
     public static final class string {
-        public static final int action_settings=0x7f070001;
-        public static final int app_name=0x7f070000;
-        public static final int avto_charge=0x7f070011;
-        public static final int avto_reboot=0x7f070010;
-        public static final int avto_start=0x7f070017;
-        public static final int color_baloons=0x7f070004;
-        public static final int delay=0x7f070012;
-        public static final int end_time=0x7f070013;
-        public static final int hello_world=0x7f070002;
-        public static final int lightning=0x7f070003;
-        public static final int name=0x7f070015;
-        public static final int natural_wall=0x7f070005;
-        public static final int parameters=0x7f070009;
-        public static final int pause=0x7f07001d;
-        public static final int play=0x7f07001c;
-        public static final int profiles=0x7f07000e;
-        public static final int save_as_new=0x7f07000f;
-        public static final int settings=0x7f07000a;
-        public static final int source=0x7f070008;
-        public static final int source_desc=0x7f07000b;
-        public static final int source_inner=0x7f07000c;
-        public static final int source_outer=0x7f07000d;
-        public static final int start_time=0x7f070014;
-        public static final int str_loop=0x7f070006;
-        public static final int str_pages=0x7f070007;
-        public static final int transformation_title=0x7f070019;
-        public static final int update=0x7f07001a;
-        public static final int update_summary=0x7f07001b;
-        public static final int view_settings=0x7f070018;
-        public static final int vk_id=0x7f070016;
+        public static final int action_settings=0x7f080004;
+        public static final int app_name=0x7f080000;
+        public static final int avto_charge=0x7f08000c;
+        public static final int avto_reboot=0x7f08000b;
+        public static final int avto_start=0x7f080013;
+        public static final int base=0x7f08001b;
+        public static final int cancel_label=0x7f08002a;
+        public static final int confirm_label=0x7f08002b;
+        public static final int create_folder_error=0x7f080032;
+        public static final int create_folder_error_already_exists=0x7f080031;
+        public static final int create_folder_error_no_write_access=0x7f080030;
+        public static final int create_folder_label=0x7f08002d;
+        public static final int create_folder_msg=0x7f08002e;
+        public static final int create_folder_success=0x7f08002f;
+        public static final int delay=0x7f08000d;
+        public static final int end_time=0x7f08000e;
+        public static final int faled_to_load_data=0x7f080018;
+        public static final int inner=0x7f080025;
+        public static final int lock=0x7f080023;
+        public static final int name=0x7f080010;
+        public static final int name_need_error=0x7f080021;
+        public static final int name_sum=0x7f080011;
+        public static final int new_profile=0x7f08001c;
+        public static final int new_vk=0x7f08001d;
+        public static final int parameters=0x7f080002;
+        public static final int pause=0x7f08001a;
+        public static final int play=0x7f080019;
+        public static final int profile_choose=0x7f08001f;
+        public static final int profile_choose_sum=0x7f080020;
+        public static final int profile_curr=0x7f080007;
+        public static final int profile_curr_sum=0x7f080008;
+        public static final int profile_saved=0x7f080022;
+        public static final int profiles=0x7f080006;
+        public static final int profiles_delete=0x7f08001e;
+        public static final int save=0x7f080009;
+        public static final int save_summary=0x7f08000a;
+        public static final int sd=0x7f080024;
+        public static final int selected_folder_label=0x7f08002c;
+        public static final int server_request=0x7f080027;
+        public static final int server_request_desc=0x7f080029;
+        public static final int server_request_photo=0x7f080028;
+        public static final int settings=0x7f080003;
+        public static final int source=0x7f080001;
+        public static final int source_desc=0x7f080005;
+        public static final int start_time=0x7f08000f;
+        public static final int transformation_title=0x7f080015;
+        public static final int up_label=0x7f080033;
+        public static final int update=0x7f080016;
+        public static final int update_summary=0x7f080017;
+        public static final int view_settings=0x7f080014;
+        public static final int vk=0x7f080026;
+        public static final int vk_id=0x7f080012;
     }
     public static final class style {
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     
-
+android:theme="@android:style/Theme.Holo.NoActionBar.Fullscreen
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
@@ -99,17 +149,17 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f090000;
+        public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
-        public static final int ButtonContainer=0x7f090003;
-        public static final int ImageTitle=0x7f090002;
+        public static final int AppTheme=0x7f0a0001;
+        public static final int ButtonContainer=0x7f0a0003;
+        public static final int ImageTitle=0x7f0a0002;
     }
     public static final class xml {
-        public static final int preference=0x7f040000;
-        public static final int preference_headers=0x7f040001;
+        public static final int preference_headers=0x7f040000;
+        public static final int preference_profiles=0x7f040001;
         public static final int preference_settings=0x7f040002;
     }
 }

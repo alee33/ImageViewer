@@ -1,51 +1,58 @@
 package com.example.imageshow.rest;
 
-import com.example.imageshow.rest.GetFotoOperation.DataException;
-
-import android.app.IntentService;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+
+import com.example.imageshow.rest.operations.GetFotoListOperation;
+import com.example.imageshow.rest.operations.GetUserInfo;
+import com.foxykeep.datadroid.exception.CustomRequestException;
+import com.foxykeep.datadroid.requestmanager.Request;
+import com.foxykeep.datadroid.service.RequestService;
 
 /**
  * Service for perform requests in backgraund
+ * 
  * @author user
- *
+ * 
  */
-public class RestService extends IntentService {
+public class RestService extends RequestService {
 
-    private static final String NAME = "rest_service_image";
-    private final String TAG = getClass().getSimpleName();
-    public static final String PARAMETERS = "parameters";
-
-    public RestService() {
-        super(NAME);
-    }
-
-    public RestService(String name) {
-        super(name);
-    }
-
+    
+    public static final String SERVER_ERROR_MESSAGE="error_msg";
+    
     @Override
-    protected void onHandleIntent(Intent intent) {
-        Uri action = intent.getData();
-        Bundle extras = intent.getExtras();
-        if (extras == null || action == null) {
-            // Extras contain our ResultReceiver and data is our REST action.
-            // So, without these components we can't do anything useful.
-            Log.d(TAG, "You did not pass extras or data with the Intent.");
-        }
-        Log.d(TAG, action.getScheme() + " + " + action.getSchemeSpecificPart());
-        if (action.getScheme().equals("VK") && action.getSchemeSpecificPart().equals("FOTO")) {
-            Log.d(TAG, "get fotos from VK");
-            try {
-                new GetFotoOperation().execute(this, extras.getStringArray(PARAMETERS));
-            } catch (DataException e) {
-                Log.e(TAG, e.toString());
-            }
-        }
-        return;
+    public void onCreate() {
+        super.onCreate();
+        setIntentRedelivery(true);
     }
+    
+    @Override
+    public Operation getOperationForType(int requestType) {
+        switch (requestType) {
+        case RequestFactory.REQUEST_PHOTO_LIST:
+            return new GetFotoListOperation();
+        case RequestFactory.REQUEST_USER_DATA:
+            return new GetUserInfo();   
+        default:
+            return null;
+        }
+    }
+   
+    public static class ServerError extends CustomRequestException{
+
+        private static final long serialVersionUID = 6014661783008611248L;
+        
+        public ServerError(String message){
+            super(message);
+        }
+        
+    }
+   
+    @Override
+    protected Bundle onCustomRequestException(Request request, CustomRequestException exception) {
+        Bundle b= new Bundle();
+        b.putString(SERVER_ERROR_MESSAGE, exception.getMessage());
+        return b;
+    }
+    
 
 }

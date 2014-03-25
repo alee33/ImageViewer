@@ -1,40 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">ImageShow</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="lightning">Natural Lightning</string>
-    <string name="color_baloons">Color Baloons</string>
-    <string name="natural_wall">Natural Wall</string>
-    <string name="str_loop">Looped</string>
-    <string name="str_pages">%1$s/%2$s</string>
-    <string name="source">Source</string>
-    <string name="parameters">Application parameters</string>
-    <string name="settings">Settings</string>
-    <string name="source_desc">Source images</string>
-    <string name="source_inner">Inner images</string>
-    <string name="source_outer">SD card</string>
-    <string name="profiles">Profiles</string>
-    <string name="save_as_new">Save as new profile</string>
-    <string name="avto_reboot">Start App after reboot</string>
-    <string name="avto_charge">Start App when charge on</string>
-    <string name="delay">View delay</string>
-    <string name="end_time">Stop App time</string>
-    <string name="start_time">Start App time</string>
-    <string name="name">Profile name</string>
-    <string name="vk_id">VK page id</string>
-    <string name="avto_start">On/off time start</string>
-    <string name="view_settings">View settings</string>
-    <string name="transformation_title">Transformation type</string>
-    <string name="update">Update</string>
-    <string name="update_summary">Update images list from site</string>
-<string name="play">Play</string>
-<string name="pause">Pause</string>
+    <string name="app_name">Image Show</string>
+    <string name="source">Изображения</string>
+    <string name="parameters">Настройки приложения</string>
+    <string name="settings">Настройки</string>
+    <string name="action_settings">Настройки</string>
+    <string name="source_desc">Выбор источника изображений для отображения</string>
+    <string name="profiles">Профили</string>
+    <string name="profile_curr">Выбрать профиль</string>
+     <string name="profile_curr_sum">Выбрать профиль из списка</string>
+    <string name="save">Сохранить</string>
+     <string name="save_summary">Сохранить текущие настройки как новый профиль</string>
+    <string name="avto_reboot">При перезагрузке</string>
+    <string name="avto_charge">При включении питания</string>
+    <string name="delay">Задержка</string>
+    <string name="end_time">Остановить в</string>
+    <string name="start_time">Запустить в</string>
+    <string name="name">Имя</string>
+    <string name="name_sum">Имя профиля</string>
+    <string name="vk_id">Номер страницы</string>
+    <string name="avto_start">Таймер</string>
+    <string name="view_settings">Слайд-шоу</string>
+    <string name="transformation_title">Анимация</string>
+    <string name="update">Обновить</string>
+    <string name="update_summary">Обновить список изображений</string>
+    <string name="faled_to_load_data">Ошибка загрузки данных</string>
+    <string name="play">Старт</string>
+    <string name="pause">Стоп</string>
+    <string name="base">Автозапуск</string>
+    <string name="new_profile">Новый</string>
+    <string name="new_vk">Новый</string>
+    <string name="profiles_delete">Удаление</string>
+    <string name="profile_choose">Удалить профиль</string>
+    <string name="profile_choose_sum">Удалить профиль из списка</string>
+    <string name="name_need_error">Необходимо указать имя профиля</string>
+     <string name="profile_saved">Настройки успешно сохранены</string>
+     <string name="lock">Блокировка</string>
+    <string name="sd">SD-карта</string>
+     <string name="inner">Внутренняя память</string>
+     <string name="vk">vk.com</string>
+     <string name="server_request">Поиск страницы</string>
+     <string name="server_request_photo">Получение списка фотографий</string>
+      <string name="server_request_desc">Выполняется запрос к серверу</string>
     <string-array name="entries">
-        <item>Inner memory</item>
-        <item>External memory</item>
-        <item>VK wall foto</item>
+        <item>Внутренняя память</item>
+        <item>Внешняя память</item>
+        <item>Фотографии vk.com</item>
     </string-array>
     <string-array name="entry_values">
         <item>0</item>
@@ -42,12 +54,23 @@
         <item>2</item>
     </string-array>
     <string-array name="transform">
-        <item>Fade transformation</item>
-        <item>Rotate transformation</item>
+        <item>Затемнение</item>
+        <item>Ротация</item>
     </string-array>
     <string-array name="transform_values">
         <item>0</item>
         <item>1</item>
     </string-array>
 
+    
+    <string name="cancel_label">Cancel</string>
+    <string name="confirm_label">Confirm</string>
+    <string name="selected_folder_label">Selected folder:</string>
+    <string name="create_folder_label">Create folder</string>
+    <string name="create_folder_msg">Create new folder with name "%1$s"?</string>
+    <string name="create_folder_success">Created new folder</string>
+    <string name="create_folder_error_no_write_access">Cannot write to this folder</string>
+    <string name="create_folder_error_already_exists">Folder already exists</string>
+    <string name="create_folder_error">Could not create folder</string>
+    <string name="up_label">Up</string>
 </resources>

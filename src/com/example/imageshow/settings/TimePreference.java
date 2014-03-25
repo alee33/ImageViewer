@@ -32,7 +32,11 @@ public class TimePreference extends DialogPreference {
     public Time getTime() {
         return Time.valueOf(String.valueOf(lastHour) + ":" + String.valueOf(lastMinute) + ":00");
     }
-
+   
+    public static Time getTime(String time) {
+        return Time.valueOf(getHour(time) + ":" + getMinute(time) + ":00");
+    }
+    
     public static int getHour(String time) {
         String[] pieces = time.split(":");
 

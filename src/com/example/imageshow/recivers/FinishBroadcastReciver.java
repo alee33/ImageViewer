@@ -2,7 +2,7 @@ package com.example.imageshow.recivers;
 
 import java.util.Calendar;
 
-import com.example.imageshow.settings.ProfileItemFragment;
+import com.example.imageshow.settings.SettingsFragment;
 import com.example.imageshow.settings.TimePreference;
 
 import android.app.Activity;
@@ -35,7 +35,7 @@ public class FinishBroadcastReciver extends BroadcastReceiver {
         AlarmManager mgr = (AlarmManager) ctxt.getSystemService(Context.ALARM_SERVICE);
         Calendar cal = Calendar.getInstance();
 
-        String time = ProfileItemFragment.getStopTime(ctxt);
+        String time = SettingsFragment.getStopTime(ctxt);
 
         cal.set(Calendar.HOUR_OF_DAY, TimePreference.getHour(time));
         cal.set(Calendar.MINUTE, TimePreference.getMinute(time));

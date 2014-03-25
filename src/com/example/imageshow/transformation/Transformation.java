@@ -1,7 +1,7 @@
 package com.example.imageshow.transformation;
 
-
 import android.support.v4.view.ViewPager;
+
 
 /**
  * Transformations fabrica

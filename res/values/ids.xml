@@ -2,5 +2,7 @@
 
     <item name="ID_PLAY" type="id"/>
     <item name="ID_PAUSE" type="id"/>
+    <item name="ID_LOCK" type="id"/>
+    <item name="ID_NOIFICATION" type="id"/>
 
 </resources>

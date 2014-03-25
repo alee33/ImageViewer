@@ -1,14 +1,14 @@
-<preference-headers
- xmlns:android="http://schemas.android.com/apk/res/android">
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
 
-<header
-    android:fragment="com.example.imageshow.settings.SourceFragment"
-    android:title="@string/source" >
+    <header
+        android:fragment="com.example.imageshow.settings.SettingsFragment"
+        android:title="@string/parameters" 
+        android:icon="@drawable/ic_set_settings">
+    </header>
+    <header
+        android:fragment="com.example.imageshow.settings.ProfileFragment"
+        android:title="@string/profiles" 
+        android:icon="@drawable/ic_set_profile">
+    </header>
 
-</header>
-<header
-    android:fragment="com.example.imageshow.settings.ProfileItemFragment"
-    android:title="@string/parameters" >
-
-</header>
 </preference-headers>

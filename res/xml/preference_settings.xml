@@ -1,79 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
- <PreferenceCategory android:title="@string/profiles" >
-    <CheckBoxPreference
-        android:key="alarm"
-        android:title="@string/avto_start" />
 
-    <com.example.imageshow.settings.TimePreference
-        android:defaultValue="12:00"
-        android:dependency="alarm"
-        android:inputType="time"
-        android:key="start_time"
-        android:title="@string/start_time" >
-    </com.example.imageshow.settings.TimePreference>
-    
-    <com.example.imageshow.settings.TimePreference
-        android:defaultValue="13:00"
-        android:dependency="alarm"
-        android:inputType="time"
-        android:key="end_time"
-        android:title="@string/end_time" >
-    </com.example.imageshow.settings.TimePreference>
-     <CheckBoxPreference
-        android:defaultValue="true"
-        android:key="avto_charge"
-        android:title="@string/avto_charge" >
-    </CheckBoxPreference>
-    <CheckBoxPreference
-        android:defaultValue="true"
-        android:key="avto_reboot"
-        android:title="@string/avto_reboot" >
-    </CheckBoxPreference>
-       
-</PreferenceCategory>
-
- <PreferenceCategory android:title="@string/view_settings" >
-    <com.example.imageshow.settings.EditTextPreference
-        android:defaultValue="5"
-        android:inputType="number"
-        android:key="delay"
-        android:title="@string/delay" >
-    </com.example.imageshow.settings.EditTextPreference>
-    
-    <com.example.imageshow.settings.ListPreference
-        android:entries="@array/transform"
-        android:entryValues="@array/transform_values"
-        android:key="transformation"
-        android:title="@string/transformation_title" 
-        android:defaultValue="0">
-    </com.example.imageshow.settings.ListPreference>
-    
-</PreferenceCategory>
-
-    <PreferenceCategory android:title="@string/profiles" >
+    <PreferenceCategory android:title="@string/base" >
         <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="save"
-            android:title="@string/save_as_new" >
-        </CheckBoxPreference>
+            android:key="alarm"
+            android:title="@string/avto_start" />
 
+        <com.example.imageshow.settings.TimePreference
+            android:defaultValue="12:00"
+            android:dependency="alarm"
+            android:inputType="time"
+            android:key="start_time"
+            android:title="@string/start_time" >
+        </com.example.imageshow.settings.TimePreference>
+        <com.example.imageshow.settings.TimePreference
+            android:defaultValue="13:00"
+            android:dependency="alarm"
+            android:inputType="time"
+            android:key="end_time"
+            android:title="@string/end_time" >
+        </com.example.imageshow.settings.TimePreference>
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="avto_charge"
+            android:title="@string/avto_charge" >
+        </CheckBoxPreference>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="avto_reboot"
+            android:title="@string/avto_reboot" >
+        </CheckBoxPreference>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/view_settings" >
         <com.example.imageshow.settings.EditTextPreference
-            android:defaultValue="custom"
-            android:inputType="text"
-            android:key="name"
-            android:title="@string/name" >
+            android:defaultValue="5"
+            android:inputType="number"
+            android:key="delay"
+            android:title="@string/delay" >
         </com.example.imageshow.settings.EditTextPreference>
-        <!-- <com.example.imageshow.settings.EditTextPreference
-            android:inputType="text"
-            android:key="id"
-            android:shouldDisableView="true"
-            android:title="id" >
-        </com.example.imageshow.settings.EditTextPreference> -->
 
         <com.example.imageshow.settings.ListPreference
-            android:key="settings"
-            android:title="@string/profiles" >
+            android:defaultValue="0"
+            android:entries="@array/transform"
+            android:entryValues="@array/transform_values"
+            android:key="transformation"
+            android:title="@string/transformation_title" >
         </com.example.imageshow.settings.ListPreference>
     </PreferenceCategory>
 
