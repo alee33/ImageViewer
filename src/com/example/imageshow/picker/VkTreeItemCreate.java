@@ -69,6 +69,9 @@ public class VkTreeItemCreate extends VkTreeItem {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                if(input.getText().length()==0){
+                    return;
+                }
                 source.setText(input.getText().toString());
                 Dao<Source, Long> sourceDao;
                 try {
