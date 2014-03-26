@@ -4,6 +4,12 @@ import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+/**
+ * Source page detail data
+ * 
+ * @author user
+ * 
+ */
 @DatabaseTable(tableName = "detailes")
 public class Detail {
     @DatabaseField(dataType = DataType.LONG)

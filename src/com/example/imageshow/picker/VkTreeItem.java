@@ -29,6 +29,12 @@ import android.text.InputType;
 import android.util.Log;
 import android.widget.EditText;
 
+/**
+ * Vk source item
+ * 
+ * @author user
+ * 
+ */
 public class VkTreeItem implements TreeItemImplementation {
 
     protected String description;
@@ -38,14 +44,17 @@ public class VkTreeItem implements TreeItemImplementation {
     private static final String TAG = VkTreeItem.class.getName();
     private final TreeItemImplementation item;
     private final Map<Request, RequestListener> mRequestListenerMap;
-    
+
     public VkTreeItem(Source source, Context context) {
         this.source = source;
         this.context = context;
-        item=this;
+        item = this;
         mRequestListenerMap = new ConcurrentHashMap<Request, RequestListener>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Collection<TreeItemImplementation> getInnerItems() {
         Dao<Source, Long> sourceDao;
@@ -64,16 +73,27 @@ public class VkTreeItem implements TreeItemImplementation {
         return listFr;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TreeItemImplementation getParentItem() {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getPath() {
         return source.getText();
     }
 
+    /**
+     * Get source detail
+     * 
+     * @return
+     */
     private String getDetails() {
         StringBuilder detail = new StringBuilder();
         for (Detail order : source.getDetails()) {
@@ -83,18 +103,26 @@ public class VkTreeItem implements TreeItemImplementation {
         return detail.length() == 0 ? source.getText() : detail.toString().replaceFirst(";", "");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
         return getDetails();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getImage() {
         // TODO Auto-generated method stub
         return R.drawable.vk;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void click(final TreeFragmentListener listener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -115,8 +143,8 @@ public class VkTreeItem implements TreeItemImplementation {
                 try {
                     Dao<Source, Long> sourceDao = DatabaseManager.getInstance().getHelper().getViolationSourceDao();
                     sourceDao.update(source);
-                    
-                    //perform request to VK
+
+                    // perform request to VK
                     execute(RequestFactory.getDetailData(source.getId()), new RequestProgressHandler(listener));
                 } catch (SQLException e) {
                     showError(e.getMessage());
@@ -134,50 +162,69 @@ public class VkTreeItem implements TreeItemImplementation {
 
     }
 
-    protected void execute(Request request, RequestProgressHandler listener){
+    /**
+     * Execure request with listener
+     * 
+     * @param request -current request
+     * @param listener -result listener
+     */
+    protected void execute(Request request, RequestProgressHandler listener) {
         mRequestListenerMap.put(request, listener);
-        listener.showProgress();
-        RestRequestManager.from(context).execute(request,listener);
+        listener.showProgress(); // shoe progress bar while result wait
+        RestRequestManager.from(context).execute(request, listener);
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void doubleClick(TreeFragmentListener listener) {
 
         boolean isDelete = true;
-      //  handler = new RequestPhotoListener(listener);
+        // handler = new RequestPhotoListener(listener);
         for (Detail d : source.getDetails()) {
             Log.d(TAG, d.getPageId() + " - " + d.getTitle());
-            
+
             execute(RequestFactory.getPhotoListRequest((d.isGroup() ? "-" : "") + d.getPageId(), isDelete), new RequestPhotoListener(listener));
             isDelete = false;
         }
-        
+
     }
-   
-    
+
+    /**
+     * Show error if exists
+     * 
+     * @param error - error text
+     */
     protected void showError(String error) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(android.R.string.dialog_alert_title).setMessage(error == null ? context.getString(R.string.faled_to_load_data) : error).create().show();
     }
-   
-    
-    
+
+    /**
+     * Request listener with progressbar
+     * 
+     * @author user
+     * 
+     */
     public class RequestProgressHandler implements RequestListener {
 
         protected WeakReference<TreeFragmentListener> listener;
         protected WeakReference<ProgressDialog> progress;
-       
+
         public RequestProgressHandler(TreeFragmentListener listener) {
             super();
             this.listener = new WeakReference<TreeFragmentListener>(listener);
         }
 
-        
-        public void showProgress(){
-            progress = new WeakReference<ProgressDialog>(ProgressDialog.show(context, context.getResources().getString(R.string.server_request), context.getResources().getString(R.string.server_request_desc), true));
+        /**
+         * Show progressbar
+         */
+        public void showProgress() {
+            progress = new WeakReference<ProgressDialog>(ProgressDialog.show(context, context.getResources().getString(R.string.server_request),
+                    context.getResources().getString(R.string.server_request_desc), true));
         }
-        
-        
+
         @Override
         public void onRequestFinished(Request request, Bundle resultData) {
             Log.d(TAG, "onRequestFinished");
@@ -204,19 +251,28 @@ public class VkTreeItem implements TreeItemImplementation {
             refreshListener(request);
         }
 
-
+        /**
+         * Get response by request
+         * 
+         * @param request - request
+         */
         private void refreshListener(Request request) {
-            mRequestListenerMap.remove(request);
+            mRequestListenerMap.remove(request); // remove request listener from list
             ProgressDialog p;
-            if(( p =progress.get())!=null){
-                p.dismiss();
+            if ((p = progress.get()) != null) {
+                p.dismiss(); // hide progressbar
             }
             TreeFragmentListener l;
-            if ((l=listener.get()) != null) {
-                l.onRefreshSubs(item);
+            if ((l = listener.get()) != null) {
+                l.onRefreshSubs(item); // refresh subs
             }
         }
-        
+
+        /**
+         * Show error as dialog
+         * 
+         * @param error -error text
+         */
         protected void showError(String error) {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
             builder.setTitle(android.R.string.dialog_alert_title).setMessage(error == null ? context.getString(R.string.faled_to_load_data) : error).create().show();
@@ -224,33 +280,43 @@ public class VkTreeItem implements TreeItemImplementation {
 
     }
 
-    
+    /**
+     * Photo request listener
+     * 
+     * @author user
+     * 
+     */
     public class RequestPhotoListener extends RequestProgressHandler {
 
         public RequestPhotoListener(TreeFragmentListener listener) {
             super(listener);
         }
-        
+
+        /**
+         * {@inheritDoc}
+         */
         @Override
-        public void showProgress(){
-            progress = new WeakReference<ProgressDialog>(ProgressDialog.show(context, context.getResources().getString(R.string.server_request_photo), context.getResources().getString(R.string.server_request_desc), true));
+        public void showProgress() {
+            progress = new WeakReference<ProgressDialog>(ProgressDialog.show(context, context.getResources().getString(R.string.server_request_photo),
+                    context.getResources().getString(R.string.server_request_desc), true));
         }
-        
+
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public void onRequestFinished(Request request, Bundle resultData) {
-            
+
             TreeFragmentListener l;
-            if ((l=listener.get()) != null) {
-                l.returnValue(item, SourceType.VK);
+            if ((l = listener.get()) != null) {
+                l.returnValue(item, SourceType.VK); // return source value
             }
             mRequestListenerMap.remove(request);
             ProgressDialog p;
-            if(( p =progress.get())!=null){
-                p.dismiss();
+            if ((p = progress.get()) != null) {
+                p.dismiss(); // hide preogressbar
             }
         }
     }
-
-
 
 }

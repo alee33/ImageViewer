@@ -30,10 +30,10 @@ import com.foxykeep.datadroid.requestmanager.Request;
 import com.foxykeep.datadroid.service.RequestService.Operation;
 import com.j256.ormlite.dao.Dao;
 
-public class GetUserInfo implements Operation {
+public class GetPageDeatil implements Operation {
 
     public static final String HTTP = "https://api.vk.com/method/users.get"; // call rest operation
-    private static final String TAG = GetUserInfo.class.getSimpleName();
+    private static final String TAG = GetPageDeatil.class.getSimpleName();
     public static final String PAGE_INFO = "page_info";
 
     @Override
@@ -67,6 +67,19 @@ public class GetUserInfo implements Operation {
         return null;
     }
 
+    /**
+     * Get info if page is userPage
+     * @param context
+     * @param detailDao
+     * @param s
+     * @return
+     * @throws ConnectionException
+     * @throws IOException
+     * @throws JsonParseException
+     * @throws JsonProcessingException
+     * @throws SQLException
+     * @throws ServerError
+     */
     private Result getUsersInfo(Context context, Dao<Detail, Long> detailDao, Source s) throws ConnectionException, IOException, JsonParseException, JsonProcessingException, SQLException, ServerError {
         Log.d(TAG, "perform user request");
         NetworkConnection connection = new NetworkConnection(context, "https://api.vk.com/method/users.get");
@@ -103,6 +116,19 @@ public class GetUserInfo implements Operation {
         }
     }
   
+    /**
+     * Get info if page is group page
+     * @param context
+     * @param detailDao
+     * @param s
+     * @return
+     * @throws ConnectionException
+     * @throws IOException
+     * @throws JsonParseException
+     * @throws JsonProcessingException
+     * @throws SQLException
+     * @throws ServerError
+     */
     private Result getGroupInfo(Context context, Dao<Detail, Long> detailDao, Source s) throws ConnectionException, IOException, JsonParseException, JsonProcessingException, SQLException, ServerError {
         Log.d(TAG, "perform group request");
         NetworkConnection connection = new NetworkConnection(context, "https://api.vk.com/method/groups.getById");

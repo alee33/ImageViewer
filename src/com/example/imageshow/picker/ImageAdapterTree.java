@@ -13,6 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Tree item adapter
+ */
 public class ImageAdapterTree extends ArrayAdapter<TreeItemImplementation> {
     private List<TreeItemImplementation> data;
     private int layoutResourceId;
@@ -30,6 +33,10 @@ public class ImageAdapterTree extends ArrayAdapter<TreeItemImplementation> {
         ImageView imageItem;
 
     }
+
+    /**
+     * {@inheritDoc}
+     */
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

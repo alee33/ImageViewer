@@ -9,9 +9,9 @@
     <string name="source_desc">Выбор источника изображений для отображения</string>
     <string name="profiles">Профили</string>
     <string name="profile_curr">Выбрать профиль</string>
-     <string name="profile_curr_sum">Выбрать профиль из списка</string>
+    <string name="profile_curr_sum">Выбрать профиль из списка</string>
     <string name="save">Сохранить</string>
-     <string name="save_summary">Сохранить текущие настройки как новый профиль</string>
+    <string name="save_summary">Сохранить текущие настройки как новый профиль</string>
     <string name="avto_reboot">При перезагрузке</string>
     <string name="avto_charge">При включении питания</string>
     <string name="delay">Задержка</string>
@@ -35,14 +35,15 @@
     <string name="profile_choose">Удалить профиль</string>
     <string name="profile_choose_sum">Удалить профиль из списка</string>
     <string name="name_need_error">Необходимо указать имя профиля</string>
-     <string name="profile_saved">Настройки успешно сохранены</string>
-     <string name="lock">Блокировка</string>
+    <string name="profile_saved">Настройки успешно сохранены</string>
+    <string name="lock">Блокировка</string>
     <string name="sd">SD-карта</string>
-     <string name="inner">Внутренняя память</string>
-     <string name="vk">vk.com</string>
-     <string name="server_request">Поиск страницы</string>
-     <string name="server_request_photo">Получение списка фотографий</string>
-      <string name="server_request_desc">Выполняется запрос к серверу</string>
+    <string name="inner">Внутренняя память</string>
+    <string name="vk">vk.com</string>
+    <string name="server_request">Поиск страницы</string>
+    <string name="server_request_photo">Получение списка фотографий</string>
+    <string name="server_request_desc">Выполняется запрос к серверу</string>
+
     <string-array name="entries">
         <item>Внутренняя память</item>
         <item>Внешняя память</item>
@@ -62,15 +63,6 @@
         <item>1</item>
     </string-array>
 
-    
-    <string name="cancel_label">Cancel</string>
-    <string name="confirm_label">Confirm</string>
-    <string name="selected_folder_label">Selected folder:</string>
-    <string name="create_folder_label">Create folder</string>
-    <string name="create_folder_msg">Create new folder with name "%1$s"?</string>
-    <string name="create_folder_success">Created new folder</string>
-    <string name="create_folder_error_no_write_access">Cannot write to this folder</string>
-    <string name="create_folder_error_already_exists">Folder already exists</string>
-    <string name="create_folder_error">Could not create folder</string>
     <string name="up_label">Up</string>
+
 </resources>

@@ -3,8 +3,13 @@ package com.example.imageshow;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * Lock screen handler
+ * @author user
+ *
+ */
 public class LockHandler {
-    private MenuItem item;
+    private MenuItem item; //item show lock status
     private static LockHandler sInstance;
     private boolean isLocked = false;
 
@@ -18,12 +23,19 @@ public class LockHandler {
         return sInstance;
     }
 
+    /**
+     * Add item visualizator to menu
+     * @param menu
+     */
     public void addItemVisualizator(Menu menu) {
         item=menu.add(0, R.id.ID_LOCK, 0, R.string.lock);
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         changeState();
     }
 
+    /**
+     * Change current lock state
+     */
     private void changeState() {
         if (item != null) {
             if (isLocked()) {
@@ -35,16 +47,26 @@ public class LockHandler {
         }
     }
 
+    /**
+     * Lock
+     */
     public synchronized void lock() {
         isLocked = true;
         changeState();
     }
 
+    /**
+     * UnLock 
+     */
     public synchronized void unlock() {
         isLocked = false;
         changeState();
     }
 
+    /**
+     * Check lock status
+     * @return
+     */
     public boolean isLocked() {
         return isLocked;
     }

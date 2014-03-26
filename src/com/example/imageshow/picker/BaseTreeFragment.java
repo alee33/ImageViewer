@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -23,6 +22,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 
+/**
+ * Source datat picker
+ * 
+ * @author user
+ * 
+ */
 public class BaseTreeFragment extends Fragment implements TreeFragmentListener, OnKeyListener {
     private static final String TAG = BaseTreeFragment.class.getSimpleName();
     private TreeItemImplementation selectedItem;
@@ -44,11 +49,17 @@ public class BaseTreeFragment extends Fragment implements TreeFragmentListener, 
         return fragment;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -59,15 +70,16 @@ public class BaseTreeFragment extends Fragment implements TreeFragmentListener, 
         view.setFocusableInTouchMode(true);
         view.requestFocus();
 
+        // grid view to shown sources
         itemsView = (GridView) view.findViewById(R.id.directoryList);
 
+        // new detector to perform double click
         final GestureDetectorCompat gestureDectector = new GestureDetectorCompat(this.getActivity(), new GestureListener());
         itemsView.setOnTouchListener(new OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                gestureDectector.onTouchEvent(event);
-                return true;
+                return gestureDectector.onTouchEvent(event);
             }
         });
 
@@ -75,30 +87,16 @@ public class BaseTreeFragment extends Fragment implements TreeFragmentListener, 
         listItemsAdapter = new ImageAdapterTree(getActivity(), R.layout.picker_item, listItems);
         itemsView.setAdapter(listItemsAdapter);
 
+        // add default source list items
         listItems.addAll(Arrays.asList(root));
 
         return view;
     }
 
-    /*
-     * @Override
-     * public void onCreateOptionsMenu(android.view.Menu menu, android.view.MenuInflater inflater) {
-     * super.onCreateOptionsMenu(menu, inflater);
-     * MenuItem add = menu.add("UP");
-     * add.setIcon(R.drawable.navigation_up);
-     * add.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-     * add.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+    /**
+     * Press back button handler
      * 
-     * @Override
-     * public boolean onMenuItemClick(MenuItem item) {
-     * back();
-     * return false;
-     * }
-     * 
-     * }
-     * 
-     * );
-     * }
+     * @return false if click performd here
      */
     private boolean back() {
         if (selectedItem != null) {
@@ -116,10 +114,19 @@ public class BaseTreeFragment extends Fragment implements TreeFragmentListener, 
         return true;
     }
 
+    /**
+     * Debug method
+     * 
+     * @param message -string message
+     * @param args -parameters
+     */
     private void debug(String message, Object... args) {
         Log.d(TAG, String.format(message, args));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onRefreshSubs(TreeItemImplementation current) {
 
@@ -132,18 +139,23 @@ public class BaseTreeFragment extends Fragment implements TreeFragmentListener, 
 
     }
 
-    public interface SetSourceListener {
-        String setPath(SourceType type, String path);
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean returnValue(TreeItemImplementation current, SourceType type) {
         // TODO Auto-generated method stub
         debug("return value %s", current.getPath());
-        listenerSource.setPath(type, current.getPath());
+        listenerSource.setSourceLocation(type, current.getPath());
         return true;
     }
 
+    /**
+     * Current detector to perform click and double click on items
+     * 
+     * @author user
+     * 
+     */
     public class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
         @Override
@@ -163,8 +175,16 @@ public class BaseTreeFragment extends Fragment implements TreeFragmentListener, 
             listItems.get(position).doubleClick(listenerTree);
             return true;
         }
+
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            return super.onScroll(e1, e2, distanceX, distanceY);
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean onKey(View v, int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN && !back()) {
@@ -173,4 +193,23 @@ public class BaseTreeFragment extends Fragment implements TreeFragmentListener, 
             return false;
         }
     }
+
+    /**
+     * Set source location listener
+     * 
+     * @author user
+     * 
+     */
+    public interface SetSourceListener {
+
+        /**
+         * Set source loaction
+         * 
+         * @param type -location type
+         * @param path - inner path
+         * @return
+         */
+        void setSourceLocation(SourceType type, String path);
+    }
+
 }

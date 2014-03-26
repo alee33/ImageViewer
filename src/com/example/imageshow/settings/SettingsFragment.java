@@ -14,7 +14,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 
 /**
- * Fragment with profile data
+ * Fragment with app settings data
  * @author user
  *
  */

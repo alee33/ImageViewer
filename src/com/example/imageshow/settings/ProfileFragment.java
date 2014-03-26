@@ -31,7 +31,6 @@ public class ProfileFragment extends PreferenceFragment implements SharedPrefere
     private static final String SETTINGS_DEL = "profile_del";
     private static final String NAME = "name";
 
-    // private SettingsDataSource settingsDataSource;
     private SharedPreferences preferences;
     private Dao<Settings, Long> settingsDao;
 
@@ -47,7 +46,6 @@ public class ProfileFragment extends PreferenceFragment implements SharedPrefere
             settingsDao = DatabaseManager.getInstance().getHelper().getViolationSettingsDao();
             initSettingsLists((ListPreference) findPreference(SETTINGS), (ListPreference) findPreference(SETTINGS_DEL));
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -92,9 +90,13 @@ public class ProfileFragment extends PreferenceFragment implements SharedPrefere
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // settingsDataSource.close(); // TODO ???
     }
 
+    /**
+     * Restore profile items
+     * 
+     * @param id - profile id
+     */
     private void restoreSettings(long id) {
         try {
             Settings s = (Settings) settingsDao.queryForId(id);// settingsDataSource.getSettings(id);
@@ -110,6 +112,9 @@ public class ProfileFragment extends PreferenceFragment implements SharedPrefere
 
     }
 
+    /**
+     * Save current profile as new
+     */
     private void saveAsNew() {
         Settings s = new Settings();
         s.setStartupDelay(TimePreference.getTime(preferences.getString(SettingsFragment.START_TIME, "12:00")));
@@ -118,7 +123,7 @@ public class ProfileFragment extends PreferenceFragment implements SharedPrefere
         s.setAvtoResetStart(preferences.getBoolean(SettingsFragment.AVTO_REBOOT, false));
         s.setDelay(Integer.parseInt(preferences.getString(SettingsFragment.DELAY, "5")));
         s.setName((((EditTextPreference) findPreference(NAME)).getText()));
-       // settingsDataSource.insertSettings(s);
+        // settingsDataSource.insertSettings(s);
         try {
             settingsDao.create(s);
         } catch (SQLException e) {
@@ -127,8 +132,12 @@ public class ProfileFragment extends PreferenceFragment implements SharedPrefere
         }
     }
 
+    /**
+     * Delete profile
+     * 
+     * @param id - profile id
+     */
     private void delete(long id) {
-       // settingsDataSource.deleteSettings(id);
         try {
             settingsDao.deleteById(id);
         } catch (SQLException e) {

@@ -6,18 +6,24 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
-@DatabaseTable(tableName="sources")
+/**
+ * Vk source object
+ * 
+ * @author user
+ * 
+ */
+@DatabaseTable(tableName = "sources")
 public class Source {
-   
-    @DatabaseField(generatedId=true)
+
+    @DatabaseField(generatedId = true)
     private Long id;
-    
-    @DatabaseField(dataType=DataType.STRING)
+
+    @DatabaseField(dataType = DataType.STRING)
     private String text;
-    
+
     @ForeignCollectionField(eager = false)
     private ForeignCollection<Detail> details;
-    
+
     public ForeignCollection<Detail> getDetails() {
         return details;
     }
@@ -26,10 +32,10 @@ public class Source {
         this.details = details;
     }
 
-    public Source (){
-        
+    public Source() {
+
     }
-    
+
     public Long getId() {
         return id;
     }

@@ -2,10 +2,21 @@ package com.example.imageshow.rest;
 
 import com.foxykeep.datadroid.requestmanager.Request;
 
+/**
+ * Rest service request factory
+ * @author user
+ *
+ */
 public class RequestFactory {
-    public static final int REQUEST_PHOTO_LIST = 1;
-    public static final int REQUEST_USER_DATA = 3;
+    public static final int REQUEST_PHOTO_LIST = 1; //get photo list
+    public static final int REQUEST_DETAIL_DATA = 3; //get detail
     
+    /**
+     * Get photo list
+     * @param owner_id -page id
+     * @param delete - delete old stored items
+     * @return Request
+     */
     public static Request getPhotoListRequest(String owner_id,boolean delete) {
         Request request = new Request(REQUEST_PHOTO_LIST);
         request.put("owner_id", owner_id);
@@ -13,10 +24,14 @@ public class RequestFactory {
         return request;
     }
 
-   
-    public static Request getDetailData(long requestId){
-        Request request = new Request(REQUEST_USER_DATA );
-        request.put("request_id", requestId);
+   /**
+    * Get page detail as id and other
+    * @param pageName
+    * @return
+    */
+    public static Request getDetailData(long pageName){
+        Request request = new Request(REQUEST_DETAIL_DATA );
+        request.put("request_id", pageName);
         return request;
     }
     

@@ -12,12 +12,18 @@ import android.util.Log;
 import com.example.imageshow.R;
 import com.example.imageshow.SourceActivity.SourceType;
 
+/**
+ * File system source items
+ * 
+ * @author user
+ * 
+ */
 public class DirectoryTreeItem implements TreeItemImplementation, Comparable<DirectoryTreeItem> {
 
     private File file;
     private int level;
     private String description;
-    
+
     private static final String TAG = BaseTreeFragment.class.getSimpleName();
 
     public DirectoryTreeItem(File file, int level) {
@@ -31,6 +37,9 @@ public class DirectoryTreeItem implements TreeItemImplementation, Comparable<Dir
         this.description = description;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         if (description == null)
@@ -39,6 +48,9 @@ public class DirectoryTreeItem implements TreeItemImplementation, Comparable<Dir
             return description;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(DirectoryTreeItem f) {
         if (f.file.isDirectory() && this.file.isFile()) {
@@ -53,6 +65,12 @@ public class DirectoryTreeItem implements TreeItemImplementation, Comparable<Dir
         Log.d(TAG, String.format(message, args));
     }
 
+    /**
+     * Show items in directory
+     * 
+     * @param dir - base directory
+     * @return items list
+     */
     private List<TreeItemImplementation> changeDirectory(File dir) {
         if (dir == null) {
             debug("Could not change folder: dir was null");
@@ -65,9 +83,7 @@ public class DirectoryTreeItem implements TreeItemImplementation, Comparable<Dir
             List<TreeItemImplementation> files = new ArrayList<TreeItemImplementation>();
             if (contents != null) {
                 for (File f : contents) {
-                    if (isShow(f)) {
-                        files.add(new DirectoryTreeItem(f, level + 1));
-                    }
+                    files.add(new DirectoryTreeItem(f, level + 1));
                 }
             }
             // Collections.sort(files);
@@ -77,20 +93,17 @@ public class DirectoryTreeItem implements TreeItemImplementation, Comparable<Dir
         return null;
     }
 
-    private boolean isShow(File f) {
-        if (f.isDirectory() && (f.listFiles(ImageFilter.isValidImage) != null)) {
-            return true;
-        } else if (f.isFile()) {
-            return true;
-        }
-        return false;
-    }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Collection<TreeItemImplementation> getInnerItems() {
         return changeDirectory(file);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TreeItemImplementation getParentItem() {
         File parent;
@@ -100,11 +113,17 @@ public class DirectoryTreeItem implements TreeItemImplementation, Comparable<Dir
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getPath() {
         return file.getAbsolutePath();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getImage() {
         if (file.isDirectory()) {
@@ -114,12 +133,18 @@ public class DirectoryTreeItem implements TreeItemImplementation, Comparable<Dir
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void click(TreeFragmentListener listener) {
         listener.onRefreshSubs(this);
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void doubleClick(TreeFragmentListener listener) {
 
@@ -127,6 +152,11 @@ public class DirectoryTreeItem implements TreeItemImplementation, Comparable<Dir
 
     }
 
+    /**
+     * Check if current location is external source
+     * 
+     * @return
+     */
     private boolean isExternal() {
         return file.getAbsolutePath().startsWith(Environment.getExternalStorageDirectory().getAbsolutePath());
     }

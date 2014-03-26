@@ -1,6 +1,5 @@
 package com.example.imageshow;
 
-import java.io.ByteArrayOutputStream;
 
 import com.example.imageshow.R;
 import com.example.imageshow.SourceActivity.SourceType;
@@ -13,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,10 +33,12 @@ public class ImageViewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.photo_item, null);
-
+       
+        //image with photo
         image = (ImageView) v.findViewById(R.id.gallery_item);
-
+        //progressbar shown while image downloads
         ProgressBar progress = (ProgressBar) v.findViewById(R.id.loading);
+       
         Bundle bundle = this.getArguments();
         switch (SourceType.type(bundle.getInt(CursorPagerAdapter.LOADER))) {
 
@@ -56,7 +56,7 @@ public class ImageViewFragment extends Fragment {
             new DownloadImageTask(image, progress).execute(bundle.getString(FotoMapper.PHOTO_URL));
             break;
 
-        case OTHER:
+        case OTHER: //show other image from resource
             image.setImageResource(bundle.getInt("R"));
             image.setScaleType(ImageView.ScaleType.CENTER);
             break;
@@ -64,25 +64,6 @@ public class ImageViewFragment extends Fragment {
 
         return v;
 
-    }
-
-    public Bitmap StringToBitMap(String encodedString) {
-        try {
-            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            return bitmap;
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
-    }
-
-    public String BitMapToString(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String temp = Base64.encodeToString(b, Base64.DEFAULT);
-        return temp;
     }
 
     /*

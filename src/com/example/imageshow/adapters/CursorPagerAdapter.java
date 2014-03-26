@@ -40,7 +40,7 @@ public class CursorPagerAdapter<ImageViewFragment extends Fragment> extends Frag
 
     @Override
     public ImageViewFragment getItem(int position) {
-        if (cursor == null || cursor.getCount() ==0){
+        if (cursor == null || cursor.getCount() == 0) {
             return getEmptyItem();
         }
         lastPosition = position;
@@ -69,7 +69,7 @@ public class CursorPagerAdapter<ImageViewFragment extends Fragment> extends Frag
         frag.setArguments(args);
         return frag;
     }
-    
+
     public ImageViewFragment getEmptyItem() {
         ImageViewFragment frag;
         try {
@@ -84,10 +84,10 @@ public class CursorPagerAdapter<ImageViewFragment extends Fragment> extends Frag
         frag.setArguments(args);
         return frag;
     }
-    
+
     @Override
     public int getCount() {
-        if (cursor == null || cursor.getCount() ==0)
+        if (cursor == null || cursor.getCount() == 0)
             return 1;
         else
             return cursor.getCount();
@@ -102,7 +102,7 @@ public class CursorPagerAdapter<ImageViewFragment extends Fragment> extends Frag
         if (c != null) {
             notifyDataSetChanged();
         }
-      }
+    }
 
     public Cursor getCursor() {
         return cursor;

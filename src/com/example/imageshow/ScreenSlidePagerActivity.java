@@ -27,24 +27,30 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
+/**
+ * Base activity whin photo pager
+ * @author user
+ *
+ */
 public class ScreenSlidePagerActivity extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor>{
     private ViewPager mPager;
     private CursorPagerAdapter<ImageViewFragment> mPagerAdapter;
-    String[] projection = { MediaStore.Images.Media._ID , MediaStore.Images.Media.DATA};
-    String[] vk_projection = { FotoMapper._ID, FotoMapper.PHOTO_BITMAP, FotoMapper.PHOTO_URL };
-    /*public static final int INNER_SOURCE = 0;
-    public static final int OUTER_SOURCE = 1;
-    public static final int VK_FOTO = 2;*/
     
+    String[] projection = { MediaStore.Images.Media._ID , MediaStore.Images.Media.DATA}; //photo projection
+    String[] vk_projection = { FotoMapper._ID, FotoMapper.PHOTO_BITMAP, FotoMapper.PHOTO_URL }; //vk photo projection
+  
     protected static final int REQUEST_ENABLE = 0;
 
-    private final String TAG = getClass().getSimpleName();
+    private static final String TAG = ScreenSlidePagerActivity.class.getSimpleName();
     private int sourceId = 0;
     private String sourcePath;
     private BroadcastReceiver finishReciver;
     private PlayerInterceptor player;
 
+    /**
+     * Reset photo loader 
+     * @param id - loader id
+     */
     public void restartLoader(int id) {
         getSupportLoaderManager().restartLoader(id, null, (LoaderManager.LoaderCallbacks<Cursor>) this);
 
@@ -55,8 +61,9 @@ public class ScreenSlidePagerActivity extends FragmentActivity implements Loader
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LayoutInflater li = LayoutInflater.from(this);
-
-        TouchHandlerContainer touchHandler = new TouchHandlerContainer(this);
+        
+       //create touch event container to perform all click events as main view
+        TouchHandlerContainer touchHandler = new TouchHandlerContainer(this); 
         li.inflate(R.layout.main_, touchHandler, true);
         setContentView(touchHandler);
 
@@ -66,9 +73,9 @@ public class ScreenSlidePagerActivity extends FragmentActivity implements Loader
         mPager = (ViewPager) findViewById(R.id.pager);
         mPager.setAdapter(mPagerAdapter);
 
-        //create player interceptor
+        //create player interceptor/ Player perform all touch events on main view
         player = new PlayerInterceptor(this, mPager);
-        touchHandler.setListener(player);
+        touchHandler.setListener(player); 
 
         sourceId = PreferenceManager.getDefaultSharedPreferences(this).getInt(SourceActivity.SOURCE_KEY,0);
         sourcePath= PreferenceManager.getDefaultSharedPreferences(this).getString(SourceActivity.SOURCE_PATH, "");
@@ -96,17 +103,25 @@ public class ScreenSlidePagerActivity extends FragmentActivity implements Loader
         }
         return null;
     }
-
+   
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         mPagerAdapter.swapCursor(data, loader.getId());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mPagerAdapter.swapCursor(null, -1);
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -114,7 +129,9 @@ public class ScreenSlidePagerActivity extends FragmentActivity implements Loader
         return true;
 
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(player.onInterceptTouchEvent()){
@@ -134,7 +151,9 @@ public class ScreenSlidePagerActivity extends FragmentActivity implements Loader
         }
         return super.onOptionsItemSelected(item);
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -151,21 +170,25 @@ public class ScreenSlidePagerActivity extends FragmentActivity implements Loader
         mPager.setPageTransformer(true, Transformation.getInstance().getTransformer(SettingsFragment.getTransformation(getApplicationContext()))); // set transformation on every resume activity if
                                                                                                                                                    // its changed
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onPause() {
         super.onPause();
     }
 
     /**
-     * При выходе из приложения
+     * {@inheritDoc}
      */
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(finishReciver);
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) { // catch key pressed
         return player.onInterceptTouchEvent();

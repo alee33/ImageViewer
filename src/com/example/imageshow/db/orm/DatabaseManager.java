@@ -4,6 +4,12 @@ import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 import android.content.Context;
 
+/**
+ * Database manager
+ * 
+ * @author user
+ * 
+ */
 public class DatabaseManager {
     private static volatile DatabaseManager instance;
     private OrmDatabaseHelper helper;

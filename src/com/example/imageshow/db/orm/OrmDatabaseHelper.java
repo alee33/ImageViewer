@@ -11,6 +11,12 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+/**
+ * Database helper
+ * 
+ * @author user
+ * 
+ */
 public class OrmDatabaseHelper extends OrmLiteSqliteOpenHelper {
     // name of the database file for your application
     private static final String DATABASE_NAME = "db_photos.db";
@@ -20,7 +26,7 @@ public class OrmDatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Dao<Source, Long> sourceDao = null;
     private Dao<Detail, Long> detailDao = null;
     private Dao<Settings, Long> settingsDao = null;
-    
+
     public OrmDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -61,25 +67,26 @@ public class OrmDatabaseHelper extends OrmLiteSqliteOpenHelper {
         }
         return sourceDao;
     }
-    
+
     public Dao<Detail, Long> getViolationDeatilDao() throws SQLException {
         if (detailDao == null) {
             detailDao = getDao(Detail.class);
         }
         return detailDao;
     }
-    
+
     public Dao<Settings, Long> getViolationSettingsDao() throws SQLException {
         if (settingsDao == null) {
             settingsDao = getDao(Settings.class);
         }
         return settingsDao;
     }
+
     @Override
     public void close() {
         super.close();
         sourceDao = null;
-        detailDao=null;
+        detailDao = null;
     }
 
 }

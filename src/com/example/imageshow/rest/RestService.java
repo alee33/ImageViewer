@@ -3,7 +3,7 @@ package com.example.imageshow.rest;
 import android.os.Bundle;
 
 import com.example.imageshow.rest.operations.GetFotoListOperation;
-import com.example.imageshow.rest.operations.GetUserInfo;
+import com.example.imageshow.rest.operations.GetPageDeatil;
 import com.foxykeep.datadroid.exception.CustomRequestException;
 import com.foxykeep.datadroid.requestmanager.Request;
 import com.foxykeep.datadroid.service.RequestService;
@@ -30,8 +30,8 @@ public class RestService extends RequestService {
         switch (requestType) {
         case RequestFactory.REQUEST_PHOTO_LIST:
             return new GetFotoListOperation();
-        case RequestFactory.REQUEST_USER_DATA:
-            return new GetUserInfo();   
+        case RequestFactory.REQUEST_DETAIL_DATA:
+            return new GetPageDeatil();   
         default:
             return null;
         }
