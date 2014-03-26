@@ -30,6 +30,7 @@ public class LockHandler {
     public void addItemVisualizator(Menu menu) {
         item=menu.add(0, R.id.ID_LOCK, 0, R.string.lock);
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        item.setEnabled(false);
         changeState();
     }
 

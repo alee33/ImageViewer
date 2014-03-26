@@ -34,6 +34,8 @@ public class PlayerInterceptor implements OnInterceptTouchEventListener {
     private Runnable hideBar;
     private Handler barHandler;
 
+    private MenuItem play,stop;
+    
     public PlayerInterceptor(Activity context, ViewPager mPager) {
 
         this.mPagerAdapter = (CursorPagerAdapter<?>) mPager.getAdapter();
@@ -64,9 +66,13 @@ public class PlayerInterceptor implements OnInterceptTouchEventListener {
      * @param menu
      */
     public void onCreateOptionsMenu(Menu menu) {
-        menu.add(0, R.id.ID_PLAY, 0, R.string.play).setIcon(android.R.drawable.ic_media_play).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-        menu.add(0, R.id.ID_PAUSE, 0, R.string.pause).setIcon(android.R.drawable.ic_media_pause).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-
+        play= menu.add(0, R.id.ID_PLAY, 0, R.string.play).setIcon(android.R.drawable.ic_media_play);
+        play.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        
+        stop=menu.add(0, R.id.ID_PAUSE, 0, R.string.pause).setIcon(android.R.drawable.ic_media_pause);
+        stop.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        stop.setEnabled(false);
+        
         LockHandler.instance().addItemVisualizator(menu); // create lock vizualization to menu
     }
 
@@ -141,7 +147,8 @@ public class PlayerInterceptor implements OnInterceptTouchEventListener {
             };
             mRunnable.run();
             isPlayed = true;
-
+            play.setEnabled(false);
+            stop.setEnabled(true);
         }
         LockHandler.instance().lock(); // lock screen
         context.getActionBar().hide(); // hide action bar
@@ -155,6 +162,8 @@ public class PlayerInterceptor implements OnInterceptTouchEventListener {
         if (handler != null) {
             handler.removeCallbacks(mRunnable);
             isPlayed = false;
+            play.setEnabled(true);
+            stop.setEnabled(false);
         }
 
     }
